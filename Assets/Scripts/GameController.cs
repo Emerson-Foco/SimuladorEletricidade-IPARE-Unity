@@ -24,13 +24,11 @@ public class GameController : MonoBehaviour
     {
         if (quadro.activeSelf)
         {
-            quadro.SetActive(false);
-            icon.sprite = GroupIcon[0];
+            quadro.SetActive(false);       
         }
         else
         {
-            quadro.SetActive(true);
-            icon.sprite = GroupIcon[1];
+            quadro.SetActive(true);       
         }
     }
 
