@@ -13,18 +13,15 @@ public class Item : MonoBehaviour
 
     public bool setActiveBox;
 
-    public int posIni;  
+    public int posIni;
     void Start()
     {
-
         imgItem = GetComponent<Button>();
 
         if (setActiveBox)
         {
             LoadImg(posIni);
         }
-
-
     }
 
     public void ResetImage(int pos)
@@ -35,7 +32,11 @@ public class Item : MonoBehaviour
 
     public void LoadImg(int pos)
     {
-        imgItem.image.sprite = gameController.GroupIconPanel[pos];
+        if (pos < gameController.GroupIconPanel.Length)
+        {
+            imgItem.image.sprite = gameController.GroupIconPanel[pos];
+        }
+
     }
 
 }

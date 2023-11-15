@@ -5,33 +5,11 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-
-    public GameObject quadro;
     public Sprite[] GroupIcon;
-    public Image icon;
-
     public Sprite[] GroupIconPanel;
 
     private String getName;
-
-    void Start()
-    {
-
-        SetPainel();
-    }
-
-    public void SetPainel()
-    {
-        if (quadro.activeSelf)
-        {
-            quadro.SetActive(false);       
-        }
-        else
-        {
-            quadro.SetActive(true);       
-        }
-    }
-
+   
     public int GetSave(int pos)
     {
         getName = "pos" + pos;
@@ -49,7 +27,4 @@ public class GameController : MonoBehaviour
         getName = "pos" + pos;
         PlayerPrefs.DeleteKey(getName);
     }
-
-
-
 }

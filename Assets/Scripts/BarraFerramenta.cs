@@ -6,13 +6,7 @@ using UnityEngine.UI;
 public class BarraFerramenta : MonoBehaviour
 {
     public Image[] boxImage;
-    public GameController gameController;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    public GameController gameController;   
     public void SetBox(int box)
     {
         for (int i = 0; i < boxImage.Length; i++)
