@@ -1,6 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +10,8 @@ public class Item : MonoBehaviour
     public GameController gameController;
     // Start is called before the first frame update
 
+    public TextMeshProUGUI textItem;
+    public float textItemFont;
     public bool setActiveBox;
 
     public int posIni;
@@ -21,6 +22,11 @@ public class Item : MonoBehaviour
         if (setActiveBox)
         {
             LoadImg(posIni);
+        }
+
+        if (textItem != null)
+        {
+            GetNameItem();
         }
     }
 
@@ -37,6 +43,17 @@ public class Item : MonoBehaviour
             imgItem.image.sprite = gameController.GroupIconPanel[pos];
         }
 
+    }
+
+    public void GetNameItem()
+    {
+        textItem.text = gameController.GroupIconPanel[posIni].name;
+        SetFont(textItemFont);
+    }
+
+    public void SetFont(float fonte)
+    {
+        textItem.fontSize = fonte;
     }
 
 }

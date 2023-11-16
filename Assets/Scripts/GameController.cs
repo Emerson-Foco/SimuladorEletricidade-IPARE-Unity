@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public Sprite[] GroupIcon;
     public Sprite[] GroupIconPanel;
 
     private String getName;
-   
     public int GetSave(int pos)
     {
         getName = "pos" + pos;
