@@ -14,6 +14,8 @@ public class BarraFerramenta : MonoBehaviour
     public TextMeshProUGUI[] text;
 
     public GameObject[] textPro;
+    private bool bl;
+    private int verifySaveInt;
 
     void Awake()
     {
@@ -21,21 +23,47 @@ public class BarraFerramenta : MonoBehaviour
     }
     public void SetBox(int box)
     {
+        if (VerifyBox(box))
+        {
+            Debug.Log("o item ja esta na barra de ferramentas");
+        }
+        else
+        {
+            for (int i = 0; i < boxImage.Length; i++)
+            {
+                if (boxImage[i].sprite == null && (box < gameController.GroupIconPanel.Length))
+                {
+                    boxImage[i].sprite = gameController.GroupIconPanel[box];
+                    gameController.SetSave(i, box);
+                    currentColor = boxImage[i].color;
+                    currentColor.a = 1.0f;
+                    boxImage[i].color = currentColor;
+                    SetActiveTrueBox(itemX[i], textPro[i]);
+                    text[i].text = gameController.GroupIconPanel[box].name;
+                    break;
+                }
+            }
+        }
+
+
+    }
+
+    public bool VerifyBox(int box)
+    {
+        bl = false;
         for (int i = 0; i < boxImage.Length; i++)
         {
-            if (boxImage[i].sprite == null && (box < gameController.GroupIconPanel.Length))
+            if (gameController.VerifySave(i))
             {
-                boxImage[i].sprite = gameController.GroupIconPanel[box];
-                gameController.SetSave(i, box);
-                currentColor = boxImage[i].color;
-                currentColor.a = 1.0f;
-                boxImage[i].color = currentColor;
-                SetActiveTrueBox(itemX[i], textPro[i]);
-                text[i].text = gameController.GroupIconPanel[box].name;
-                break;
+                verifySaveInt = gameController.GetSave(i);
+                if (verifySaveInt == box)
+                {
+                    return true;
+                }
             }
-
         }
+
+        return bl;
     }
 
 
@@ -55,6 +83,8 @@ public class BarraFerramenta : MonoBehaviour
         currentColor = boxImage[value].color;
         currentColor.a = 0f;
         boxImage[value].color = currentColor;
+        boxImage[value].sprite = null;
+        gameController.ResetSave(value);
     }
 
     public void SetActiveTrueBox(GameObject itmX, GameObject text)
@@ -62,6 +92,6 @@ public class BarraFerramenta : MonoBehaviour
         itmX.SetActive(true);
         text.SetActive(true);
     }
-   
+
 }
 

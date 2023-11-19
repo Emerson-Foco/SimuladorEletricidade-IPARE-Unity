@@ -7,12 +7,24 @@ public class GameController : MonoBehaviour
 {
     public Sprite[] GroupIconPanel;
     public GameObject[] painelSec;
+    public GameObject painelEndGame;
+
+
+    void Awake(){    
+     painelEndGame.SetActive(false);
+     PlayerPrefs.DeleteAll();
+    }
 
     private String getName;
     public int GetSave(int pos)
     {
         getName = "pos" + pos;
         return PlayerPrefs.GetInt(getName);
+    }
+
+    public bool VerifySave(int pos){
+         getName = "pos" + pos;
+        return PlayerPrefs.HasKey(getName);
     }
 
     public void SetSave(int pos, int obj)

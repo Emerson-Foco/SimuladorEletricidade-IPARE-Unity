@@ -10,11 +10,14 @@ public class SetActive : MonoBehaviour
     public Sprite[] spriteButton;
     public GameController gameController;
 
+    public GameObject falsePanel;
+
     void Awake()
     {
         if (quadro.activeSelf)
         {
             quadro.SetActive(false);
+            FalsePanel(false);
             if (spriteButton.Length > 0)
             {
                 imageButton.sprite = spriteButton[0];
@@ -23,25 +26,36 @@ public class SetActive : MonoBehaviour
     }
 
     public void SetPainel()
-    {      
-       
+    {
+
         if (quadro.activeSelf)
-        {             
+        {
             quadro.SetActive(false);
+             FalsePanel(false);
             if (spriteButton.Length > 0)
             {
                 imageButton.sprite = spriteButton[0];
             }
         }
         else
-        { 
-             gameController.ActiveFalsePanel();         
+        {
+            gameController.ActiveFalsePanel();
             quadro.SetActive(true);
+             FalsePanel(true);
             if (spriteButton.Length > 0)
             {
                 imageButton.sprite = spriteButton[1];
-            }            
+            }
         }
+    }
+
+    public void FalsePanel(bool pn)
+    {
+        if (falsePanel != null)
+        {
+            falsePanel.SetActive(pn);
+        }
+
     }
 
 
