@@ -5,7 +5,17 @@ using UnityEngine.UI;
 
 public class Painelprincipal : MonoBehaviour
 {
-    public GameObject[] imgBox;
+    public GameObject[] imgBoxDijuntor;
+    public GameObject[] imgBoxDijuntorButton;
+    public GameObject[] imgBoxCaboBlue;
+    public GameObject[] imgBoxCaboGreen;
+    public GameObject[] imgBoxCaboRed;
+    public GameObject[] imgBoxDispositivoProteção;
+    public GameObject[] imgBoxinterruptor;
+    public GameObject[] imgBoxinterruptorButton;
+
+
+
     public GameController gameController;
 
     private Image getImgBox;
@@ -13,22 +23,41 @@ public class Painelprincipal : MonoBehaviour
 
     void Awake()
     {
-        BoxActiveFalse();
+       BoxActiveFalse(imgBoxDijuntor);
+       BoxActiveFalse(imgBoxDijuntorButton);
+       BoxActiveFalse(imgBoxCaboBlue);
+       BoxActiveFalse(imgBoxCaboGreen);
+       BoxActiveFalse(imgBoxCaboRed);
+       BoxActiveFalse(imgBoxDispositivoProteção);
+       BoxActiveFalse(imgBoxinterruptor);
+       BoxActiveFalse(imgBoxinterruptorButton);
     }
 
-    public void SetBoxPanel(int box)
+    /* public void SetBoxPanel(int box)
     {
         imgBox[gameController.GetSave(box)].SetActive(true);
         getImgBox = imgBox[gameController.GetSave(box)].GetComponent<Image>();
         getImgBox.sprite = gameController.GroupIconPanel[gameController.GetSave(box)];
 
-    }
+    } */
 
-    public void BoxActiveFalse()
+
+    public void BoxActiveFalse(GameObject[] game)
     {
-        for (int i = 0; i < imgBox.Length; i++)
+         for (int i = 0; i < game.Length; i++)
         {
-            imgBox[i].SetActive(false);
+            game[i].SetActive(false);           
         }
     }
+
+    public void BoxActiveTrue(GameObject[] game)
+    {
+         for (int i = 0; i < game.Length; i++)
+        {
+            game[i].SetActive(true);           
+        }
+    }
+
+
+   
 }
