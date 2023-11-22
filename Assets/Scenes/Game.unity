@@ -8070,27 +8070,27 @@ PrefabInstance:
     - target: {fileID: -3205224414484800424, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.71130896
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3205224414484800424, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3205224414484800424, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70287955
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3205224414484800424, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3205224414484800424, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 89.317
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3155338622548496297, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
@@ -12968,7 +12968,6 @@ MonoBehaviour:
   - {fileID: 1318946718445177785}
   - {fileID: 7804424108770053281}
   imgBoxDijuntorButton:
-  - {fileID: 6925531590554634581}
   - {fileID: 3137764631819091290}
   - {fileID: 3757065911154693496}
   - {fileID: 5767339455452492421}
@@ -12980,7 +12979,6 @@ MonoBehaviour:
   - {fileID: 4273553648214787862}
   - {fileID: 350291646284289213}
   - {fileID: 3337986774220998731}
-  - {fileID: 6821887587060161602}
   - {fileID: 7912572546559965405}
   imgBoxCaboBlue:
   - {fileID: 3221686018501792108}
@@ -12996,6 +12994,8 @@ MonoBehaviour:
   - {fileID: 1887608380627234446}
   imgBoxinterruptor:
   - {fileID: 5604707484536396690}
+  - {fileID: 6821887587060161602}
+  - {fileID: 6925531590554634581}
   imgBoxinterruptorButton:
   - {fileID: 6925531590554634581}
   interruptor:
