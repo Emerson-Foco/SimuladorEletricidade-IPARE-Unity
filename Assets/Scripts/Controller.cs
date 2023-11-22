@@ -12,12 +12,12 @@ public class Controller : MonoBehaviour
     private float eixoX;
     private float eixoY;
     private float eixoZ;
-    private bool posAtual;   
+    private bool posAtual;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
-        posAtual = true;        
+        posAtual = true;
         eixoX = transform.position.x;
         eixoY = transform.position.y;
         eixoZ = transform.position.z;
@@ -25,18 +25,18 @@ public class Controller : MonoBehaviour
     public void SetMoviment()
     {
         if (posAtual)
-        { 
+        {
             animator.SetBool("BtnOff", false);
             animator.SetBool("BtnOn", true);
-             posAtual = false;
-              gameObject.transform.position = new Vector3(eixoX,eixoY,eixoZ);
+            posAtual = false;
+            gameObject.transform.position = new Vector3(eixoX, eixoY, eixoZ);
         }
         else
-        {           
+        {
             animator.SetBool("BtnOff", true);
             animator.SetBool("BtnOn", false);
-             posAtual = true;
-              gameObject.transform.position = new Vector3(eixoX,eixoY,eixoZ);
+            posAtual = true;
+            gameObject.transform.position = new Vector3(eixoX, eixoY, eixoZ);
         }
     }
 

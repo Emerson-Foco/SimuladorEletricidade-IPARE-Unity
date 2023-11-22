@@ -25,7 +25,7 @@ public class BarraFerramenta : MonoBehaviour
     {
         if (VerifyBox(box))
         {
-            Debug.Log("o item ja esta na barra de ferramentas");
+            gameController.SetAnimatorPainelAviso();
         }
         else
         {
@@ -40,6 +40,7 @@ public class BarraFerramenta : MonoBehaviour
                     boxImage[i].color = currentColor;
                     SetActiveTrueBox(itemX[i], textPro[i]);
                     text[i].text = gameController.GroupIconPanel[box].name;
+                    gameController.SetColor(box);
                     break;
                 }
             }
@@ -84,7 +85,9 @@ public class BarraFerramenta : MonoBehaviour
         currentColor.a = 0f;
         boxImage[value].color = currentColor;
         boxImage[value].sprite = null;
+         gameController.SetColor(gameController.GetSave(value),1);
         gameController.ResetSave(value);
+       
     }
 
     public void SetActiveTrueBox(GameObject itmX, GameObject text)

@@ -6,13 +6,22 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public Sprite[] GroupIconPanel;
+    public GameObject[] GroupIconPanelGameObject;
     public GameObject[] painelSec;
-    public GameObject painelEndGame;
+    public GameObject painelEndGame;  
+
+    public GameObject painelAviso;
+
+    private Animator painelAvisoAnimator;
+
+    private Color currentColor;
 
 
-    void Awake(){    
-     painelEndGame.SetActive(false);
-     PlayerPrefs.DeleteAll();
+    void Awake()
+    {
+        painelAvisoAnimator = painelAviso.GetComponent<Animator>();
+        painelEndGame.SetActive(false);
+        PlayerPrefs.DeleteAll();        
     }
 
     private String getName;
@@ -22,8 +31,19 @@ public class GameController : MonoBehaviour
         return PlayerPrefs.GetInt(getName);
     }
 
-    public bool VerifySave(int pos){
-         getName = "pos" + pos;
+    public void SetColor(int pos,float alpha = 0.20f){
+    
+    currentColor = GroupIconPanelGameObject[pos].GetComponent<Image>().color;
+    currentColor.a = alpha;
+    currentColor.a = Mathf.Clamp01(currentColor.a);
+    GroupIconPanelGameObject[pos].GetComponent<Image>().color = currentColor;
+}
+
+
+
+    public bool VerifySave(int pos)
+    {
+        getName = "pos" + pos;
         return PlayerPrefs.HasKey(getName);
     }
 
@@ -37,6 +57,11 @@ public class GameController : MonoBehaviour
     {
         getName = "pos" + pos;
         PlayerPrefs.DeleteKey(getName);
+    }
+
+    public void SetAnimatorPainelAviso()
+    {
+        painelAvisoAnimator.SetTrigger("ativar");
     }
     public void ActiveFalsePanel()
     {
