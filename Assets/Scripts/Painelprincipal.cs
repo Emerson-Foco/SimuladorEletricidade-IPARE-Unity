@@ -123,16 +123,18 @@ public class Painelprincipal : MonoBehaviour
                         BoxActiveTrue(interruptor);
                         break;
                     case 8:
-                       SetActiveTrue(tomada);
+                        SetActiveTrue(tomada);
                         break;
-                        case 9:
-                       SetActiveTrue(lampadaOff);
+                    case 9:
+                        SetActiveTrue(lampadaOff);
                         break;
                     case 10:
                         SetActiveTrue(Multimetro0);
                         break;
                 }
             }
+
+            SetLampadaOn();
         }
 
 
@@ -167,6 +169,24 @@ public class Painelprincipal : MonoBehaviour
 
         game.SetActive(true);
 
+    }
+
+    public void SetLampadaOn()
+    {
+        if (imgBoxDijuntor[0].activeSelf && imgBoxCaboBlue[0].activeSelf && imgBoxCaboGreen[0].activeSelf && imgBoxCaboRed[0].activeSelf && imgBoxDispositivoProteção[0].activeSelf && imgBoxinterruptor[0].activeSelf)
+        {
+
+            if (lampadaOff.activeSelf)
+            {
+                SetActiveTrue(lampadaOn);
+            }
+
+            if (Multimetro0.activeSelf)
+            {
+                SetActiveTrue(Multimetro127);
+            }
+
+        }
     }
 
 
