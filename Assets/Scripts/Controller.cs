@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour
     private float eixoY;
     private float eixoZ;
     private bool posAtual;
+    public Painelprincipal painelprincipal;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class Controller : MonoBehaviour
         eixoY = transform.position.y;
         eixoZ = transform.position.z;
     }
-    public void SetMoviment()
+    public void SetMoviment(bool verify)
     {
         if (posAtual)
         {
@@ -30,6 +31,18 @@ public class Controller : MonoBehaviour
             animator.SetBool("BtnOn", true);
             posAtual = false;
             gameObject.transform.position = new Vector3(eixoX, eixoY, eixoZ);
+            if (verify)
+            {
+                if (PlayerPrefs.HasKey("Vitory"))
+                {
+                    if (PlayerPrefs.GetInt("Vitory") == 1)
+                    {
+                        painelprincipal.SetActiveVerifyTrue(painelprincipal.lampadaOn, painelprincipal.lampadaOff);
+                        PlayerPrefs.SetInt("Vitory", 2);
+                        painelprincipal.VerifyEndGame(1);
+                    }
+                }
+            }
         }
         else
         {
@@ -37,8 +50,21 @@ public class Controller : MonoBehaviour
             animator.SetBool("BtnOn", false);
             posAtual = true;
             gameObject.transform.position = new Vector3(eixoX, eixoY, eixoZ);
+            if (verify)
+            {
+                painelprincipal.SetActiveFalse(painelprincipal.lampadaOn);
+                if (PlayerPrefs.HasKey("Vitory"))
+                {
+                    if (PlayerPrefs.GetInt("Vitory") == 1)
+                    {
+                        PlayerPrefs.SetInt("Vitory", 1);
+                    }
+                }
+            }
         }
     }
+
+
 
 }
 

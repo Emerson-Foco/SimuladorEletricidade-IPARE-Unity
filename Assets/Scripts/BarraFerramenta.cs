@@ -64,6 +64,19 @@ public class BarraFerramenta : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < 11; i++)
+        {
+            verifySaveInt = gameController.GetSavePanel(i);
+            if (gameController.VerifySavePanel(verifySaveInt))
+            {
+                if (verifySaveInt == box)
+                {
+                    return true;
+                }
+            }
+
+        }
+
         return bl;
     }
 
@@ -85,9 +98,9 @@ public class BarraFerramenta : MonoBehaviour
         currentColor.a = 0f;
         boxImage[value].color = currentColor;
         boxImage[value].sprite = null;
-         gameController.SetColor(gameController.GetSave(value),1);
+        gameController.SetColor(gameController.GetSave(value), 1);
         gameController.ResetSave(value);
-       
+
     }
 
     public void SetActiveTrueBox(GameObject itmX, GameObject text)

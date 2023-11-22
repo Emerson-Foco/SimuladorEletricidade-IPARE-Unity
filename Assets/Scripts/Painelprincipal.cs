@@ -23,6 +23,11 @@ public class Painelprincipal : MonoBehaviour
     public GameObject Multimetro0;
     public GameObject PowerDoor;
 
+    public GameObject alert;
+
+    private bool verifyBoxPos;
+    public AudioSource musicEndGame;
+
     //private Animator powerDoorAnimator;
 
 
@@ -32,6 +37,8 @@ public class Painelprincipal : MonoBehaviour
     public Controller controller;
 
     public GameObject painelAviso;
+
+    public GameObject painelEndGame;
 
 
     private int getIntBox;
@@ -54,35 +61,24 @@ public class Painelprincipal : MonoBehaviour
         SetActiveFalse(Multimetro127);
         SetActiveFalse(Multimetro0);
         SetActiveFalse(tomada);
-
-        //powerDoorAnimator = PowerDoor.GetComponent<Animator>();
-
-
+        SetActiveFalse(painelEndGame);
     }
-
-    /* public void SetBoxPanel(int box)
-    {
-        imgBox[gameController.GetSave(box)].SetActive(true);
-        getImgBox = imgBox[gameController.GetSave(box)].GetComponent<Image>();
-        getImgBox.sprite = gameController.GroupIconPanel[gameController.GetSave(box)];
-
-    } */
 
 
     public void SelectObject(int boxPos)
     {
         if (barraFerramenta.boxImage[boxPos].sprite != null)
         {
+            verifyBoxPos = true;
             getIntBox = gameController.GetSave(boxPos);
             if (getIntBox >= 0 && getIntBox <= 6 && PowerDoor.GetComponent<Transform>().rotation.y == 0)
             {
-                controller.SetMoviment();
+                controller.SetMoviment(false);
+                verifyBoxPos = false;
 
             }
             else if (getIntBox >= 0 && getIntBox <= 6 && PowerDoor.GetComponent<Transform>().rotation.y > 0)
             {
-                barraFerramenta.SetActiveFalseBox(boxPos);
-
                 switch (getIntBox)
                 {
                     case 0:
@@ -108,15 +104,8 @@ public class Painelprincipal : MonoBehaviour
 
                 }
             }
-            else if (getIntBox >= 7 && PowerDoor.GetComponent<Transform>().rotation.y > 0)
+            else if (getIntBox >= 7)
             {
-                controller.SetMoviment();
-            }
-            else if (getIntBox >= 7 && PowerDoor.GetComponent<Transform>().rotation.y == 0)
-            {
-
-                barraFerramenta.SetActiveFalseBox(boxPos);
-
                 switch (getIntBox)
                 {
                     case 7:
@@ -129,17 +118,21 @@ public class Painelprincipal : MonoBehaviour
                         SetActiveTrue(lampadaOff);
                         break;
                     case 10:
-                        SetActiveTrue(Multimetro0);
+                        SetActiveVerifyTrue(Multimetro0, tomada, alert);
                         break;
                 }
             }
 
+            if (verifyBoxPos)
+            {
+                barraFerramenta.SetActiveFalseBox(boxPos);
+                gameController.SetSavePanel(getIntBox);
+            }
+
+            gameController.SetColor(getIntBox);
             SetLampadaOn();
         }
-
-
     }
-
 
     public void BoxActiveFalse(GameObject[] game)
     {
@@ -171,24 +164,60 @@ public class Painelprincipal : MonoBehaviour
 
     }
 
+    public void SetActiveVerifyTrue(GameObject game, GameObject necessaryObject, GameObject alert = null)
+    {
+        if (necessaryObject.activeSelf)
+        {
+            game.SetActive(true);
+        }
+
+        if (alert != null)
+        {
+            if (!necessaryObject.activeSelf)
+            {
+                alert.GetComponent<Animator>().SetTrigger("ativar");
+                verifyBoxPos = false;
+            }
+        }
+    }
+
     public void SetLampadaOn()
     {
         if (imgBoxDijuntor[0].activeSelf && imgBoxCaboBlue[0].activeSelf && imgBoxCaboGreen[0].activeSelf && imgBoxCaboRed[0].activeSelf && imgBoxDispositivoProteção[0].activeSelf && imgBoxinterruptor[0].activeSelf)
         {
+            SetActiveVerifyTrue(Multimetro127, Multimetro0);
+            if (!PlayerPrefs.HasKey("Vitory"))
+        {
+             PlayerPrefs.SetInt("Vitory", 1);        
+        }
+              VerifyEndGame(1);
+        }        
+    }
 
-            if (lampadaOff.activeSelf)
+    public void VerifyEndGame(float sec)
+    {
+        if (PlayerPrefs.HasKey("Vitory"))
+        {
+            if (PlayerPrefs.GetInt("Vitory") == 2)
             {
-                SetActiveTrue(lampadaOn);
+                if (Multimetro127.activeSelf)
+                {
+                    StartCoroutine(EndGame(sec));
+                }
             }
-
-            if (Multimetro0.activeSelf)
-            {
-                SetActiveTrue(Multimetro127);
-            }
-
         }
     }
 
+    private IEnumerator EndGame(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        SetActiveTrue(painelEndGame);
+        TocarMusica();
+    }
 
+    private void TocarMusica()
+    {
+        musicEndGame.Play();
+    }
 
 }

@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     public Sprite[] GroupIconPanel;
     public GameObject[] GroupIconPanelGameObject;
     public GameObject[] painelSec;
-    public GameObject painelEndGame;  
+    public GameObject painelEndGame;
 
     public GameObject painelAviso;
 
@@ -21,23 +21,20 @@ public class GameController : MonoBehaviour
     {
         painelAvisoAnimator = painelAviso.GetComponent<Animator>();
         painelEndGame.SetActive(false);
-        PlayerPrefs.DeleteAll();        
+        PlayerPrefs.DeleteAll();
     }
 
     private String getName;
-    public int GetSave(int pos)
-    {
-        getName = "pos" + pos;
-        return PlayerPrefs.GetInt(getName);
-    }
 
-    public void SetColor(int pos,float alpha = 0.20f){
-    
-    currentColor = GroupIconPanelGameObject[pos].GetComponent<Image>().color;
-    currentColor.a = alpha;
-    currentColor.a = Mathf.Clamp01(currentColor.a);
-    GroupIconPanelGameObject[pos].GetComponent<Image>().color = currentColor;
-}
+
+    public void SetColor(int pos, float alpha = 0.20f)
+    {
+
+        currentColor = GroupIconPanelGameObject[pos].GetComponent<Image>().color;
+        currentColor.a = alpha;
+        currentColor.a = Mathf.Clamp01(currentColor.a);
+        GroupIconPanelGameObject[pos].GetComponent<Image>().color = currentColor;
+    }
 
 
 
@@ -47,11 +44,36 @@ public class GameController : MonoBehaviour
         return PlayerPrefs.HasKey(getName);
     }
 
+    public bool VerifySavePanel(int pos)
+    {
+        getName = "posPanel" + pos;
+        return PlayerPrefs.HasKey(getName);
+    }
+
     public void SetSave(int pos, int obj)
     {
         getName = "pos" + pos;
         PlayerPrefs.SetInt(getName, obj);
     }
+
+    public int GetSave(int pos)
+    {
+        getName = "pos" + pos;
+        return PlayerPrefs.GetInt(getName);
+    }
+
+
+     public void SetSavePanel(int pos)
+    {
+        getName = "posPanel" + pos;
+        PlayerPrefs.SetInt(getName, pos);
+    }
+
+    public int GetSavePanel(int pos)
+    {
+        getName = "posPanel" + pos;
+        return PlayerPrefs.GetInt(getName);
+    } 
 
     public void ResetSave(int pos)
     {
