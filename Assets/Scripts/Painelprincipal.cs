@@ -118,7 +118,7 @@ public class Painelprincipal : MonoBehaviour
                         SetActiveTrue(lampadaOff);
                         break;
                     case 10:
-                        SetActiveVerifyTrue(Multimetro0, tomada, alert);
+                        SetActiveVerifyTrue1(Multimetro0, tomada, alert);
                         break;
                 }
             }
@@ -169,6 +169,24 @@ public class Painelprincipal : MonoBehaviour
         if (necessaryObject.activeSelf)
         {
             game.SetActive(true);
+            necessaryObject.SetActive(false);
+        }
+
+        if (alert != null)
+        {
+            if (!necessaryObject.activeSelf)
+            {
+                alert.GetComponent<Animator>().SetTrigger("ativar");
+                verifyBoxPos = false;
+            }
+        }
+    }
+
+    public void SetActiveVerifyTrue1(GameObject game, GameObject necessaryObject, GameObject alert = null)
+    {
+        if (necessaryObject.activeSelf)
+        {
+            game.SetActive(true);           
         }
 
         if (alert != null)
