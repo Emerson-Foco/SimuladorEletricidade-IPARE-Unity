@@ -97,7 +97,7 @@ public class BarraFerramenta : MonoBehaviour
         currentColor = boxImage[value].color;
         currentColor.a = 0f;
         boxImage[value].color = currentColor;
-        boxImage[value].sprite = null;
+        boxImage[value].sprite = null;       
         gameController.SetColor(gameController.GetSave(value), 1);
         gameController.ResetSave(value);
 

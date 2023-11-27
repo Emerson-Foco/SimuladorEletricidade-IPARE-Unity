@@ -766,6 +766,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181951886}
   m_Mesh: {fileID: 0}
+--- !u!1 &272517320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3003342662717852761, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1450097470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &295391258
 GameObject:
   m_ObjectHideFlags: 0
@@ -13007,6 +13013,7 @@ MonoBehaviour:
   Multimetro127: {fileID: 7991094034899146341}
   Multimetro0: {fileID: 7285147156251475627}
   PowerDoor: {fileID: 4574647980325903633}
+  imgCaboYellow: {fileID: 272517320}
   alert: {fileID: 2115421558}
   musicEndGame: {fileID: 1626579046}
   gameController: {fileID: 181008535}

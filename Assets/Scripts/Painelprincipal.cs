@@ -22,10 +22,14 @@ public class Painelprincipal : MonoBehaviour
     public GameObject Multimetro127;
     public GameObject Multimetro0;
     public GameObject PowerDoor;
+    public GameObject imgCaboYellow;
 
     public GameObject alert;
 
+    public AudioSource audioPainel;
+
     private bool verifyBoxPos;
+    private bool verifyCaboPos;
     public AudioSource musicEndGame;
 
     //private Animator powerDoorAnimator;
@@ -62,6 +66,7 @@ public class Painelprincipal : MonoBehaviour
         SetActiveFalse(Multimetro0);
         SetActiveFalse(tomada);
         SetActiveFalse(painelEndGame);
+        SetActiveFalse(imgCaboYellow);
     }
 
 
@@ -70,10 +75,12 @@ public class Painelprincipal : MonoBehaviour
         if (barraFerramenta.boxImage[boxPos].sprite != null)
         {
             verifyBoxPos = true;
+            verifyCaboPos = true;
             getIntBox = gameController.GetSave(boxPos);
             if (getIntBox >= 0 && getIntBox <= 6 && PowerDoor.GetComponent<Transform>().rotation.y == 0)
             {
                 controller.SetMoviment(false);
+                audioPainel.Play();
                 verifyBoxPos = false;
 
             }
@@ -92,14 +99,17 @@ public class Painelprincipal : MonoBehaviour
                     case 2:
                         BoxActiveTrue(imgBoxDispositivoProteção);
                         break;
+                    case 3:
+                        SetActiveTrue(imgCaboYellow);
+                        break;
                     case 4:
-                        BoxActiveTrue(imgBoxCaboBlue);
+                        OnlyActiveTrue(imgBoxCaboBlue, 4);
                         break;
                     case 5:
-                        BoxActiveTrue(imgBoxCaboGreen);
+                        OnlyActiveTrue(imgBoxCaboGreen, 5);
                         break;
                     case 6:
-                        BoxActiveTrue(imgBoxCaboRed);
+                        OnlyActiveTrue(imgBoxCaboRed, 6);
                         break;
 
                 }
@@ -129,7 +139,11 @@ public class Painelprincipal : MonoBehaviour
                 gameController.SetSavePanel(getIntBox);
             }
 
-            gameController.SetColor(getIntBox);
+            if (verifyCaboPos)
+            {
+                gameController.SetColor(getIntBox);
+            }
+
             SetLampadaOn();
         }
     }
@@ -148,6 +162,29 @@ public class Painelprincipal : MonoBehaviour
         {
             game[i].SetActive(true);
         }
+    }
+
+
+
+    // Insere os cabos um por vez
+    public void OnlyActiveTrue(GameObject[] game, int value)
+    {
+        for (int i = 0; i < game.Length; i++)
+        {
+            if (!game[i].activeSelf)
+            {
+
+                game[i].SetActive(true);
+                if (i != game.Length)
+                {
+                    gameController.SetColor(value, 1);
+                    verifyCaboPos = false;
+                }
+
+                break;
+            }
+        }
+
     }
 
     public void SetActiveFalse(GameObject game)
@@ -186,7 +223,7 @@ public class Painelprincipal : MonoBehaviour
     {
         if (necessaryObject.activeSelf)
         {
-            game.SetActive(true);           
+            game.SetActive(true);
         }
 
         if (alert != null)
@@ -201,15 +238,15 @@ public class Painelprincipal : MonoBehaviour
 
     public void SetLampadaOn()
     {
-        if (imgBoxDijuntor[0].activeSelf && imgBoxCaboBlue[0].activeSelf && imgBoxCaboGreen[0].activeSelf && imgBoxCaboRed[0].activeSelf && imgBoxDispositivoProteção[0].activeSelf && imgBoxinterruptor[0].activeSelf)
+        if (imgBoxDijuntor[0].activeSelf && imgBoxCaboBlue[1].activeSelf && imgBoxCaboGreen[1].activeSelf && imgBoxCaboRed[1].activeSelf && imgBoxDispositivoProteção[0].activeSelf && imgBoxinterruptor[0].activeSelf)
         {
             SetActiveVerifyTrue(Multimetro127, Multimetro0);
             if (!PlayerPrefs.HasKey("Vitory"))
-        {
-             PlayerPrefs.SetInt("Vitory", 1);        
+            {
+                PlayerPrefs.SetInt("Vitory", 1);
+            }
+            VerifyEndGame(1);
         }
-              VerifyEndGame(1);
-        }        
     }
 
     public void VerifyEndGame(float sec)

@@ -35,7 +35,7 @@ public class Controller : MonoBehaviour
             {
                 if (PlayerPrefs.HasKey("Vitory"))
                 {
-                    if (PlayerPrefs.GetInt("Vitory") == 1)
+                    if (PlayerPrefs.GetInt("Vitory") == 1 && painelprincipal.imgCaboYellow.activeSelf)
                     {
                         painelprincipal.SetActiveVerifyTrue(painelprincipal.lampadaOn, painelprincipal.lampadaOff);
                         PlayerPrefs.SetInt("Vitory", 2);

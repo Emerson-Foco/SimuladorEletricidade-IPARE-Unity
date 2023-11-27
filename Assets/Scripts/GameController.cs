@@ -15,8 +15,6 @@ public class GameController : MonoBehaviour
     private Animator painelAvisoAnimator;
 
     private Color currentColor;
-
-
     void Awake()
     {
         painelAvisoAnimator = painelAviso.GetComponent<Animator>();
@@ -29,7 +27,6 @@ public class GameController : MonoBehaviour
 
     public void SetColor(int pos, float alpha = 0.20f)
     {
-
         currentColor = GroupIconPanelGameObject[pos].GetComponent<Image>().color;
         currentColor.a = alpha;
         currentColor.a = Mathf.Clamp01(currentColor.a);
@@ -63,7 +60,7 @@ public class GameController : MonoBehaviour
     }
 
 
-     public void SetSavePanel(int pos)
+    public void SetSavePanel(int pos)
     {
         getName = "posPanel" + pos;
         PlayerPrefs.SetInt(getName, pos);
@@ -73,7 +70,7 @@ public class GameController : MonoBehaviour
     {
         getName = "posPanel" + pos;
         return PlayerPrefs.GetInt(getName);
-    } 
+    }
 
     public void ResetSave(int pos)
     {
