@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public class Painelprincipal : MonoBehaviour
     public GameObject[] imgBoxDijuntor;
     public GameObject[] imgBoxDijuntorButton;
     public GameObject[] imgBoxCaboBlue;
-    public GameObject[] imgBoxCaboGreen;
+    public GameObject imgBoxCaboGreen;
     public GameObject[] imgBoxCaboRed;
     public GameObject[] imgBoxDispositivoProteção;
     public GameObject[] imgBoxinterruptor;
@@ -33,9 +34,6 @@ public class Painelprincipal : MonoBehaviour
     public AudioSource musicEndGame;
 
     //private Animator powerDoorAnimator;
-
-
-
     public GameController gameController;
     public BarraFerramenta barraFerramenta;
     public Controller controller;
@@ -53,13 +51,13 @@ public class Painelprincipal : MonoBehaviour
         BoxActiveFalse(imgBoxDijuntor);
         BoxActiveFalse(imgBoxDijuntorButton);
         BoxActiveFalse(imgBoxCaboBlue);
-        BoxActiveFalse(imgBoxCaboGreen);
         BoxActiveFalse(imgBoxCaboRed);
         BoxActiveFalse(imgBoxDispositivoProteção);
         BoxActiveFalse(imgBoxinterruptor);
         BoxActiveFalse(imgBoxinterruptorButton);
         BoxActiveFalse(interruptor);
 
+        SetActiveFalse(imgBoxCaboGreen);
         SetActiveFalse(lampadaOn);
         SetActiveFalse(lampadaOff);
         SetActiveFalse(Multimetro127);
@@ -77,14 +75,16 @@ public class Painelprincipal : MonoBehaviour
             verifyBoxPos = true;
             verifyCaboPos = true;
             getIntBox = gameController.GetSave(boxPos);
-            if (getIntBox >= 0 && getIntBox <= 6 && PowerDoor.GetComponent<Transform>().rotation.y == 0)
+            if ((getIntBox >= 0 && getIntBox < 3 || getIntBox > 3 && getIntBox <= 6) && PowerDoor.GetComponent<Transform>().rotation.y == 0)
             {
                 controller.SetMoviment(false);
                 audioPainel.Play();
                 verifyBoxPos = false;
 
+            }else if(getIntBox == 3){
+                 SetActiveTrue(imgCaboYellow);
             }
-            else if (getIntBox >= 0 && getIntBox <= 6 && PowerDoor.GetComponent<Transform>().rotation.y > 0)
+            else if ((getIntBox >= 0 && getIntBox < 3 || getIntBox > 3 && getIntBox <= 6) && PowerDoor.GetComponent<Transform>().rotation.y > 0)
             {
                 switch (getIntBox)
                 {
@@ -98,15 +98,12 @@ public class Painelprincipal : MonoBehaviour
                         break;
                     case 2:
                         BoxActiveTrue(imgBoxDispositivoProteção);
-                        break;
-                    case 3:
-                        SetActiveTrue(imgCaboYellow);
-                        break;
+                        break;                    
                     case 4:
                         OnlyActiveTrue(imgBoxCaboBlue, 4);
                         break;
                     case 5:
-                        OnlyActiveTrue(imgBoxCaboGreen, 5);
+                        SetActiveTrue(imgBoxCaboGreen);
                         break;
                     case 6:
                         OnlyActiveTrue(imgBoxCaboRed, 6);
@@ -148,6 +145,38 @@ public class Painelprincipal : MonoBehaviour
         }
     }
 
+    public bool GetCabo(int cabo)
+    {
+        if (cabo == 4)
+        {
+            if (imgBoxCaboBlue[1].activeSelf)
+            {
+                return true;
+            }
+            return false;
+        }
+        else if (cabo == 5)
+        {
+            if (imgBoxCaboGreen.activeSelf)
+            {
+                return true;
+            }
+            return false;
+        }
+        else if (cabo == 6)
+        {
+            if (imgBoxCaboRed[1].activeSelf)
+            {
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public void BoxActiveFalse(GameObject[] game)
     {
         for (int i = 0; i < game.Length; i++)
@@ -173,10 +202,9 @@ public class Painelprincipal : MonoBehaviour
         {
             if (!game[i].activeSelf)
             {
-
                 game[i].SetActive(true);
-                if (i != game.Length)
-                {
+               if (i < game.Length - 1)
+                { 
                     gameController.SetColor(value, 1);
                     verifyCaboPos = false;
                 }
@@ -196,8 +224,7 @@ public class Painelprincipal : MonoBehaviour
 
     public void SetActiveTrue(GameObject game)
     {
-
-        game.SetActive(true);
+        game.SetActive(true);     
 
     }
 
@@ -238,7 +265,7 @@ public class Painelprincipal : MonoBehaviour
 
     public void SetLampadaOn()
     {
-        if (imgBoxDijuntor[0].activeSelf && imgBoxCaboBlue[1].activeSelf && imgBoxCaboGreen[1].activeSelf && imgBoxCaboRed[1].activeSelf && imgBoxDispositivoProteção[0].activeSelf && imgBoxinterruptor[0].activeSelf)
+        if (imgBoxDijuntor[0].activeSelf && imgBoxCaboBlue[1].activeSelf && imgBoxCaboGreen.activeSelf && imgBoxCaboRed[1].activeSelf && imgBoxDispositivoProteção[0].activeSelf && imgBoxinterruptor[0].activeSelf)
         {
             SetActiveVerifyTrue(Multimetro127, Multimetro0);
             if (!PlayerPrefs.HasKey("Vitory"))

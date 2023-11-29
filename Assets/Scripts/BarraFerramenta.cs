@@ -17,6 +17,8 @@ public class BarraFerramenta : MonoBehaviour
     private bool bl;
     private int verifySaveInt;
 
+    public Painelprincipal painelprincipal;
+
     void Awake()
     {
         SetActiveFalseBoxTotal();
@@ -45,13 +47,11 @@ public class BarraFerramenta : MonoBehaviour
                 }
             }
         }
-
-
     }
 
     public bool VerifyBox(int box)
     {
-        bl = false;
+        bl = false;       
         for (int i = 0; i < boxImage.Length; i++)
         {
             if (gameController.VerifySave(i))
@@ -71,10 +71,12 @@ public class BarraFerramenta : MonoBehaviour
             {
                 if (verifySaveInt == box)
                 {
+                    if(!painelprincipal.GetCabo(box)){
+                        return false;
+                    }                    
                     return true;
                 }
             }
-
         }
 
         return bl;

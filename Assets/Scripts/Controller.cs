@@ -51,11 +51,11 @@ public class Controller : MonoBehaviour
             posAtual = true;
             gameObject.transform.position = new Vector3(eixoX, eixoY, eixoZ);
             if (verify)
-            {
-                painelprincipal.SetActiveFalse(painelprincipal.lampadaOn);
+            {   
+                 painelprincipal.SetActiveVerifyTrue(painelprincipal.lampadaOff, painelprincipal.lampadaOn);
                 if (PlayerPrefs.HasKey("Vitory"))
                 {
-                    if (PlayerPrefs.GetInt("Vitory") == 1)
+                    if (PlayerPrefs.GetInt("Vitory") == 2)
                     {
                         PlayerPrefs.SetInt("Vitory", 1);
                     }

@@ -5883,6 +5883,7 @@ MonoBehaviour:
   - {fileID: 2018749275}
   - {fileID: 1282794407}
   - {fileID: 478558801}
+  painelprincipal: {fileID: 2052024965}
 --- !u!1 &1098093487
 GameObject:
   m_ObjectHideFlags: 0
@@ -7916,7 +7917,7 @@ PrefabInstance:
     - target: {fileID: -8743977856895364022, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1
+      value: 1.0245999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
@@ -7971,7 +7972,7 @@ PrefabInstance:
     - target: {fileID: -8461750692915518149, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1036282
+      value: 1.028228
       objectReference: {fileID: 0}
     - target: {fileID: -8461750692915518149, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
@@ -8161,17 +8162,22 @@ PrefabInstance:
     - target: {fileID: -1325999745106645655, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1
+      value: 1.0245999
       objectReference: {fileID: 0}
     - target: {fileID: -678001464015485850, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1000478
+      value: 1.0246477
       objectReference: {fileID: 0}
     - target: {fileID: -6052448352299267, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.048
+      value: 1.0314999
+      objectReference: {fileID: 0}
+    - target: {fileID: -6052448352299267, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.4590199
       objectReference: {fileID: 0}
     - target: {fileID: 336234945894447185, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
@@ -8256,7 +8262,7 @@ PrefabInstance:
     - target: {fileID: 1177360655033522684, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0999999
+      value: 1.0245998
       objectReference: {fileID: 0}
     - target: {fileID: 1863431786863666794, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
@@ -8446,7 +8452,12 @@ PrefabInstance:
     - target: {fileID: 8472251942442158655, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0480001
+      value: 1.0315
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472251942442158655, guid: 004dcd97e682bf24ab7c5c525adc8dbd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.438
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8806,7 +8817,7 @@ Transform:
   m_GameObject: {fileID: 1477556406}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071067, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.0480001, y: 2.0507474, z: 1.4572413}
+  m_LocalPosition: {x: 1.0315, y: 2.0507474, z: 1.438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12989,8 +13000,7 @@ MonoBehaviour:
   imgBoxCaboBlue:
   - {fileID: 3221686018501792108}
   - {fileID: 6123373595317797085}
-  imgBoxCaboGreen:
-  - {fileID: 7285535667147762891}
+  imgBoxCaboGreen: {fileID: 7285535667147762891}
   imgBoxCaboRed:
   - {fileID: 7760493830647968614}
   - {fileID: 7891665786616727106}
@@ -13015,6 +13025,7 @@ MonoBehaviour:
   PowerDoor: {fileID: 4574647980325903633}
   imgCaboYellow: {fileID: 272517320}
   alert: {fileID: 2115421558}
+  audioPainel: {fileID: 1000451469}
   musicEndGame: {fileID: 1626579046}
   gameController: {fileID: 181008535}
   barraFerramenta: {fileID: 1074779375}
